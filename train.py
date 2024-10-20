@@ -28,17 +28,13 @@ X_train, X_test, y_train, y_test = train_test_split(
 num_features = [0, 1, 2, 3]  # All columns in Iris dataset are numeric
 
 # Define the preprocessing pipeline
-preprocessor = ColumnTransformer(
-    transformers=[
-        ("num", StandardScaler(), num_features)
-    ]
-)
+preprocessor = ColumnTransformer(transformers=[("num", StandardScaler(), num_features)])
 
 # Build the full pipeline (preprocessing + model)
 pipe = Pipeline(
     steps=[
         ("preprocessing", preprocessor),
-        ("model", RandomForestClassifier(n_estimators=100, random_state=42))
+        ("model", RandomForestClassifier(n_estimators=100, random_state=42)),
     ]
 )
 
