@@ -77,4 +77,4 @@ if not os.path.exists("Model"):
 # Save the trained pipeline (model + preprocessing)
 sio.dump(pipe, "Model/iris_rf_pipeline.skops")
 
-print("Model saved as 'iris_rf_pipeline.skops' in the Model Folder .")
+print("Model saved as 'iris_rf_pipeline.skops' in the Model Folder.")
