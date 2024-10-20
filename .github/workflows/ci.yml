@@ -1,41 +1,25 @@
-name: CI Pipeline for Iris Dataset
-
+name: Continuous Integration
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
-
+  
+permissions: write-all
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10'  # Updated to Python 3.10
-
-      - name: Install Dependencies
+      - uses: actions/checkout@v3
+      - uses: iterative/setup-cml@v2
+      - name: Install Packages
         run: make install
-
-      # Install CML to ensure it's available for model evaluation
-      - name: Install CML
-        run: pip install cml
-
-      - name: Train Model
-        run: make train
-
-      - name: Format Code
+      - name: Format
         run: make format
-
-      - name: Evaluate Model
+      - name: Train
+        run: make train
+      - name: Evaluation
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: make eval
