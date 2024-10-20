@@ -6,12 +6,14 @@ from sklearn.metrics import accuracy_score, f1_score
 import skops.io as sio
 
 # Load Iris dataset
-df = pd.read_csv('Data/iris.data', header=None)
+df = pd.read_csv("Data/iris.data", header=None)
 X = df.iloc[:, :-1]
 y = df.iloc[:, -1]
 
 # Split the dataset
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
 
 # Train RandomForest model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
@@ -22,9 +24,9 @@ y_pred = model.predict(X_test)
 
 # Evaluate model
 accuracy = accuracy_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred, average='macro')
+f1 = f1_score(y_test, y_pred, average="macro")
 
-print(f'Accuracy: {accuracy:.2f}, F1: {f1:.2f}')
+print(f"Accuracy: {accuracy:.2f}, F1: {f1:.2f}")
 
 # Save the model
-sio.dump(model, 'Model/iris_rf_model.skops')
+sio.dump(model, "Model/iris_rf_model.skops")
