@@ -1,5 +1,5 @@
 install:
-	sudo pip3 install --upgrade pip && \
+	pip install --upgrade pip && \
 	pip install -r requirements.txt
 
 format:
