@@ -4,3 +4,4 @@ gradio
 uvicorn
 pandas
 black
+matplotlib
