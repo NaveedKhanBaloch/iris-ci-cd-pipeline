@@ -25,6 +25,10 @@ jobs:
       - name: Install Dependencies
         run: make install
 
+      # Install CML to ensure it's available for model evaluation
+      - name: Install CML
+        run: pip install cml
+
       - name: Train Model
         run: make train
 
@@ -32,4 +36,6 @@ jobs:
         run: make format
 
       - name: Evaluate Model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: make eval
